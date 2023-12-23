@@ -64,38 +64,6 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  Widget getContainer(
-    String title,
-    String image,
-    int index,
-    void Function(int) onTap,
-  ) {
-    return GestureDetector(
-      onTap: () => onTap(index),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 21.5),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 38.0, right: 21),
-              child: getImage(image, index),
-            ),
-            Expanded(
-              child: Text(
-                title,
-                style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return AppLayoutBuilder((context, deviceType, width) {
@@ -145,87 +113,6 @@ class _DashboardPageState extends State<DashboardPage> {
                             ),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
-                              // children: [
-                              //   getContainer(
-                              //     'Dashboard',
-                              //     AppAssets.dashboardWhiteIcon,
-                              //     0,
-                              //     _onItemTapped,
-                              //   ),
-                              //   getContainer(
-                              //     'Profile',
-                              //     AppAssets.userCircleIcon,
-                              //     1,
-                              //     _onItemTapped,
-                              //   ),
-                              //   getContainer(
-                              //     'Add Money',
-                              //     AppAssets.addMoney,
-                              //     2,
-                              //     _onItemTapped,
-                              //   ),
-                              //   getContainer(
-                              //     'My Investment',
-                              //     AppAssets.myInvest,
-                              //     3,
-                              //     _onItemTapped,
-                              //   ),
-                              //   getContainer(
-                              //     'Plans',
-                              //     AppAssets.fileIcon,
-                              //     4,
-                              //     _onItemTapped,
-                              //   ),
-                              //   getContainer(
-                              //     'Withdraw',
-                              //     AppAssets.withdraw,
-                              //     0,
-                              //     _onItemTapped,
-                              //   ),
-                              //   getContainer(
-                              //     'Transaction',
-                              //     AppAssets.transaction,
-                              //     0,
-                              //     _onItemTapped,
-                              //   ),
-                              //   getContainer(
-                              //     'Achievements',
-                              //     AppAssets.achieve,
-                              //     1,
-                              //     _onItemTapped,
-                              //   ),
-                              //   getContainer(
-                              //     'Network Tree',
-                              //     AppAssets.networkIcon,
-                              //     2,
-                              //     _onItemTapped,
-                              //   ),
-                              //   getContainer(
-                              //     'Profit Log',
-                              //     AppAssets.profit,
-                              //     3,
-                              //     _onItemTapped,
-                              //   ),
-                              //   getContainer(
-                              //     'Support',
-                              //     AppAssets.support,
-                              //     4,
-                              //     _onItemTapped,
-                              //   ),
-                              //   getContainer(
-                              //     'Change Password',
-                              //     AppAssets.password,
-                              //     0,
-                              //     _onItemTapped,
-                              //   ),
-                              //   getContainer(
-                              //     'Logout',
-                              //     AppAssets.logoutIcon,
-                              //     0,
-                              //     _onItemTapped,
-                              //   ),
-                              // ],
-
                               children: [
                                 _imgVerticalTab(
                                   url: AppAssets.dashboard,

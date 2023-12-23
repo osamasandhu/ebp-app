@@ -315,101 +315,41 @@ class _MyInvestViewState extends State<MyInvestView> {
 
   @override
   Widget build(BuildContext context) {
-    return AppLayoutBuilder((_, __, width) {
-      return switch (_deviceType) {
-        DeviceType.mobile => Scaffold(
-            appBar: _appBArWidget(),
-            body: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  getProfileDataWidget(_deviceType),
-                  20.height,
-                  Row(children: [
-                    getContainerWidget(
-                      isBlueBackground: false,
-                      title: 'Current Balance',
-                      amount: '\$ 0.00000',
-                      onTap: () {},
-                      buttonTitle: 'Add Money',
-                      icon: AppAssets.dollarCoinIcon,
-                      iconHeight: 21,
-                      iconWidth: 21,
-                    ),
-                    10.width,
-                    getContainerWidget(
-                      title: 'Investment Amount',
-                      amount: '\$ 0.00000',
-                      onTap: () {},
-                      buttonTitle: 'My Invest',
-                      icon: AppAssets.dollarBagIcon,
-                      iconWidth: 12,
-                      iconHeight: 14,
-                    ),
-                  ]),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20, bottom: 22),
-                    child: Row(children: [
-                      getContainerWidget(
-                        title: 'Investment Earning',
-                        amount: '\$ 0.00000',
-                        onTap: () {},
-                        buttonTitle: 'Transfer To Cash',
-                        icon: AppAssets.graphIcon,
-                        iconHeight: 15,
-                        iconWidth: 21,
-                      ),
-                      10.width,
-                      getContainerWidget(
-                        title: 'Affiliate Income',
-                        amount: '\$ 0.00000',
-                        onTap: () {},
-                        buttonTitle: 'Transfer To Cash',
-                        icon: AppAssets.networkIcon,
-                        iconWidth: 16,
-                        iconHeight: 14,
-                      ),
-                    ]),
+    return switch (_deviceType) {
+      DeviceType.mobile => Scaffold(
+          appBar: _appBArWidget(),
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                getProfileDataWidget(_deviceType),
+                20.height,
+                Row(children: [
+                  getContainerWidget(
+                    isBlueBackground: false,
+                    title: 'Current Balance',
+                    amount: '\$ 0.00000',
+                    onTap: () {},
+                    buttonTitle: 'Add Money',
+                    icon: AppAssets.dollarCoinIcon,
+                    iconHeight: 21,
+                    iconWidth: 21,
                   ),
-                  ...getStatsWidget(),
-                  22.height,
-                  ...getGraphWidget(),
-                ],
-              ),
-            ),
-          ),
-        DeviceType.tab => Scaffold(
-            appBar: _appBArWidget(),
-            body: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  getProfileDataWidget(_deviceType),
-                  20.height,
-                  Row(children: [
-                    getContainerWidget(
-                      isBlueBackground: false,
-                      title: 'Current Balance',
-                      amount: '\$ 0.00000',
-                      onTap: () {},
-                      buttonTitle: 'Add Money',
-                      icon: AppAssets.dollarCoinIcon,
-                      iconHeight: 21,
-                      iconWidth: 21,
-                    ),
-                    10.width,
-                    getContainerWidget(
-                      title: 'Investment Amount',
-                      amount: '\$ 0.00000',
-                      onTap: () {},
-                      buttonTitle: 'My Invest',
-                      icon: AppAssets.dollarBagIcon,
-                      iconWidth: 12,
-                      iconHeight: 14,
-                    ),
-                    10.width,
+                  10.width,
+                  getContainerWidget(
+                    title: 'Investment Amount',
+                    amount: '\$ 0.00000',
+                    onTap: () {},
+                    buttonTitle: 'My Invest',
+                    icon: AppAssets.dollarBagIcon,
+                    iconWidth: 12,
+                    iconHeight: 14,
+                  ),
+                ]),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, bottom: 22),
+                  child: Row(children: [
                     getContainerWidget(
                       title: 'Investment Earning',
                       amount: '\$ 0.00000',
@@ -430,82 +370,23 @@ class _MyInvestViewState extends State<MyInvestView> {
                       iconHeight: 14,
                     ),
                   ]),
-                  28.height,
-                  ...getStatsWidget(),
-                  28.height,
-                  ...getGraphWidget(),
-                ],
-              ),
+                ),
+                ...getStatsWidget(),
+                22.height,
+                ...getGraphWidget(),
+              ],
             ),
           ),
-        DeviceType.web => Scaffold(
-            body: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: Column(children: [
-                Row(children: [
-                  Expanded(
-                    child: Text(
-                      'Dashboard',
-                      style: GoogleFonts.poppins(
-                        fontSize: 33,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.lightBlack,
-                      ),
-                    ),
-                  ),
-                  Image.asset(
-                    AppAssets.userCircleIcon,
-                    color: AppColors.blueColor,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 49.0, right: 20),
-                    child: Text(
-                      'EBP User',
-                      style: GoogleFonts.poppins(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.lightBlack,
-                      ),
-                    ),
-                  ),
-                ]),
-                27.height,
+        ),
+      DeviceType.tab => Scaffold(
+          appBar: _appBArWidget(),
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 getProfileDataWidget(_deviceType),
                 20.height,
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(14),
-                    color: const Color(0xffFEEFE4),
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 20,
-                    horizontal: 10,
-                  ),
-                  margin: const EdgeInsets.only(bottom: 50),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _chipContainer(
-                        img: AppAssets.myInvest,
-                        title: "My Invest",
-                      ),
-                      _chipContainer(
-                        img: AppAssets.addMoney,
-                        title: "Add Money",
-                      ),
-                      _chipContainer(
-                        img: AppAssets.withdraw,
-                        title: "Withdraw",
-                      ),
-                      _chipContainer(img: AppAssets.network, title: "Network"),
-                      _chipContainer(
-                        img: AppAssets.profit,
-                        title: "Profit Log",
-                        right: 0,
-                      ),
-                    ],
-                  ),
-                ),
                 Row(children: [
                   getContainerWidget(
                     isBlueBackground: false,
@@ -549,26 +430,143 @@ class _MyInvestViewState extends State<MyInvestView> {
                   ),
                 ]),
                 28.height,
-                Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: getStatsWidget(),
-                  ),
-                  15.width,
-                  Expanded(
-                    flex: 1,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: getGraphWidget(),
-                    ),
-                  ),
-                ]),
-              ]),
+                ...getStatsWidget(),
+                28.height,
+                ...getGraphWidget(),
+              ],
             ),
           ),
-      };
-    });
+        ),
+      DeviceType.web => Scaffold(
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
+            child: Column(children: [
+              Row(children: [
+                Expanded(
+                  child: Text(
+                    'Dashboard',
+                    style: GoogleFonts.poppins(
+                      fontSize: 33,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.lightBlack,
+                    ),
+                  ),
+                ),
+                Image.asset(
+                  AppAssets.userCircleIcon,
+                  color: AppColors.blueColor,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 49.0, right: 20),
+                  child: Text(
+                    'EBP User',
+                    style: GoogleFonts.poppins(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.lightBlack,
+                    ),
+                  ),
+                ),
+              ]),
+              27.height,
+              getProfileDataWidget(_deviceType),
+              20.height,
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(14),
+                  color: const Color(0xffFEEFE4),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 20,
+                  horizontal: 10,
+                ),
+                margin: const EdgeInsets.only(bottom: 50),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _chipContainer(
+                      img: AppAssets.myInvest,
+                      title: "My Invest",
+                    ),
+                    _chipContainer(
+                      img: AppAssets.addMoney,
+                      title: "Add Money",
+                    ),
+                    _chipContainer(
+                      img: AppAssets.withdraw,
+                      title: "Withdraw",
+                    ),
+                    _chipContainer(img: AppAssets.network, title: "Network"),
+                    _chipContainer(
+                      img: AppAssets.profit,
+                      title: "Profit Log",
+                      right: 0,
+                    ),
+                  ],
+                ),
+              ),
+              Row(children: [
+                getContainerWidget(
+                  isBlueBackground: false,
+                  title: 'Current Balance',
+                  amount: '\$ 0.00000',
+                  onTap: () {},
+                  buttonTitle: 'Add Money',
+                  icon: AppAssets.dollarCoinIcon,
+                  iconHeight: 21,
+                  iconWidth: 21,
+                ),
+                10.width,
+                getContainerWidget(
+                  title: 'Investment Amount',
+                  amount: '\$ 0.00000',
+                  onTap: () {},
+                  buttonTitle: 'My Invest',
+                  icon: AppAssets.dollarBagIcon,
+                  iconWidth: 12,
+                  iconHeight: 14,
+                ),
+                10.width,
+                getContainerWidget(
+                  title: 'Investment Earning',
+                  amount: '\$ 0.00000',
+                  onTap: () {},
+                  buttonTitle: 'Transfer To Cash',
+                  icon: AppAssets.graphIcon,
+                  iconHeight: 15,
+                  iconWidth: 21,
+                ),
+                10.width,
+                getContainerWidget(
+                  title: 'Affiliate Income',
+                  amount: '\$ 0.00000',
+                  onTap: () {},
+                  buttonTitle: 'Transfer To Cash',
+                  icon: AppAssets.networkIcon,
+                  iconWidth: 16,
+                  iconHeight: 14,
+                ),
+              ]),
+              28.height,
+              Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: getStatsWidget(),
+                ),
+                15.width,
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: getGraphWidget(),
+                  ),
+                ),
+              ]),
+            ]),
+          ),
+        ),
+    };
   }
 
   List<Widget> getGraphWidget() {
