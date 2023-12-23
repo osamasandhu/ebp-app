@@ -51,7 +51,7 @@ class _MyInvestViewState extends State<MyInvestView> {
     _init(true);
   }
 
-  PreferredSizeWidget _appBArWidget() {
+  PreferredSizeWidget _appBarWidget() {
     return AppBar(
       leading: Padding(
         padding: const EdgeInsets.fromLTRB(19, 12, 0, 12),
@@ -317,7 +317,7 @@ class _MyInvestViewState extends State<MyInvestView> {
   Widget build(BuildContext context) {
     return switch (_deviceType) {
       DeviceType.mobile => Scaffold(
-          appBar: _appBArWidget(),
+          appBar: _appBarWidget(),
           body: SingleChildScrollView(
             padding: const EdgeInsets.all(20),
             child: Column(
@@ -379,7 +379,7 @@ class _MyInvestViewState extends State<MyInvestView> {
           ),
         ),
       DeviceType.tab => Scaffold(
-          appBar: _appBArWidget(),
+          appBar: _appBarWidget(),
           body: SingleChildScrollView(
             padding: const EdgeInsets.all(20),
             child: Column(

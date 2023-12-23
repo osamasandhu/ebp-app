@@ -66,6 +66,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return AppLayoutBuilder((context, deviceType, width) {
       _pages = [
         MyInvestView(parentDeviceType: deviceType),
@@ -101,13 +102,17 @@ class _DashboardPageState extends State<DashboardPage> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Image.asset(AppAssets.appIcon,
-                            width: 220, height: 50),
+                        child: Image.asset(
+                          AppAssets.appIcon,
+                          width: 220,
+                          height: 50,
+                        ),
                       ),
                       16.height,
                       Expanded(
                         child: SingleChildScrollView(
                           child: Container(
+                            height: size.height - 90,
                             decoration: const BoxDecoration(
                               color: AppColors.blueColor,
                             ),
