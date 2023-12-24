@@ -453,8 +453,8 @@ class _MyInvestViewState extends State<MyInvestView> {
                     onTap: () {},
                     buttonTitle: 'Add Money',
                     icon: AppAssets.dollarCoinIcon,
-                    iconHeight: 21,
-                    iconWidth: 21,
+                    iconHeight: 23,
+                    iconWidth: 23,
                   ),
                   10.width,
                   getContainerWidget(
@@ -463,8 +463,8 @@ class _MyInvestViewState extends State<MyInvestView> {
                     onTap: () {},
                     buttonTitle: 'My Invest',
                     icon: AppAssets.dollarBagIcon,
-                    iconWidth: 12,
-                    iconHeight: 14,
+                    iconWidth: 14,
+                    iconHeight: 15,
                   ),
                   10.width,
                   getContainerWidget(
@@ -473,8 +473,8 @@ class _MyInvestViewState extends State<MyInvestView> {
                     onTap: () {},
                     buttonTitle: 'Transfer To Cash',
                     icon: AppAssets.graphIcon,
-                    iconHeight: 15,
-                    iconWidth: 21,
+                    iconHeight: 23,
+                    iconWidth: 17,
                   ),
                   10.width,
                   getContainerWidget(
@@ -483,8 +483,8 @@ class _MyInvestViewState extends State<MyInvestView> {
                     onTap: () {},
                     buttonTitle: 'Transfer To Cash',
                     icon: AppAssets.networkIcon,
-                    iconWidth: 16,
-                    iconHeight: 14,
+                    iconWidth: 17,
+                    iconHeight: 20,
                   ),
                 ]),
                 28.height,
@@ -574,8 +574,8 @@ class _MyInvestViewState extends State<MyInvestView> {
                   onTap: () {},
                   buttonTitle: 'Add Money',
                   icon: AppAssets.dollarCoinIcon,
-                  iconHeight: 21,
-                  iconWidth: 21,
+                  iconHeight: _isPlasmaScreen ? 60 : 51,
+                  iconWidth: _isPlasmaScreen ? 60 : 51,
                 ),
                 10.width,
                 getContainerWidget(
@@ -584,8 +584,8 @@ class _MyInvestViewState extends State<MyInvestView> {
                   onTap: () {},
                   buttonTitle: 'My Invest',
                   icon: AppAssets.dollarBagIcon,
-                  iconWidth: 12,
-                  iconHeight: 14,
+                  iconWidth: _isPlasmaScreen ? 33 : 42,
+                  iconHeight: _isPlasmaScreen ? 33 : 42,
                 ),
                 10.width,
                 getContainerWidget(
@@ -594,8 +594,8 @@ class _MyInvestViewState extends State<MyInvestView> {
                   onTap: () {},
                   buttonTitle: 'Transfer To Cash',
                   icon: AppAssets.graphIcon,
-                  iconHeight: 15,
-                  iconWidth: 21,
+                  iconHeight: _isPlasmaScreen ? 45 : 38,
+                  iconWidth: _isPlasmaScreen ? 60 : 52,
                 ),
                 10.width,
                 getContainerWidget(
@@ -604,8 +604,8 @@ class _MyInvestViewState extends State<MyInvestView> {
                   onTap: () {},
                   buttonTitle: 'Transfer To Cash',
                   icon: AppAssets.networkIcon,
-                  iconWidth: 16,
-                  iconHeight: 14,
+                  iconWidth: _isPlasmaScreen ? 48 : 39,
+                  iconHeight: _isPlasmaScreen ? 54 : 45,
                 ),
               ]),
               28.height,
@@ -946,7 +946,36 @@ class _MyInvestViewState extends State<MyInvestView> {
   }) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.fromLTRB(10, 8, 9, 10),
+        padding: EdgeInsets.fromLTRB(
+          _isMobile
+              ? 10
+              : _isTab
+                  ? 13
+                  : _isPlasmaScreen
+                      ? 40
+                      : 27,
+          _isMobile
+              ? 8
+              : _isTab
+                  ? 12
+                  : _isPlasmaScreen
+                      ? 41
+                      : 28,
+          _isMobile
+              ? 9
+              : _isTab
+                  ? 12
+                  : _isPlasmaScreen
+                      ? 41
+                      : 28,
+          _isMobile
+              ? 10
+              : _isTab
+                  ? 10
+                  : _isPlasmaScreen
+                      ? 35
+                      : 23,
+        ),
         decoration: BoxDecoration(
           color: isBlueBackground ? const Color(0xFF0B3167) : Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -987,7 +1016,7 @@ class _MyInvestViewState extends State<MyInvestView> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.orangeColor,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(3),
+                        borderRadius: BorderRadius.circular(_isMobile ? 3 : 5),
                       ),
                       minimumSize: Size.zero,
                       padding: const EdgeInsets.symmetric(
@@ -999,7 +1028,13 @@ class _MyInvestViewState extends State<MyInvestView> {
                     child: Text(
                       buttonTitle,
                       style: GoogleFonts.poppins(
-                        fontSize: 8,
+                        fontSize: _isMobile
+                            ? 8
+                            : _isTab
+                                ? 12
+                                : _isPlasmaScreen
+                                    ? 20
+                                    : 16,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                       ),
@@ -1011,8 +1046,20 @@ class _MyInvestViewState extends State<MyInvestView> {
               ),
             ),
             Container(
-              height: 28,
-              width: 28,
+              height: _isMobile
+                  ? 28
+                  : _isTab
+                      ? 31
+                      : _isPlasmaScreen
+                          ? 80
+                          : 70,
+              width: _isMobile
+                  ? 28
+                  : _isTab
+                      ? 31
+                      : _isPlasmaScreen
+                          ? 80
+                          : 70,
               decoration: const BoxDecoration(
                 color: AppColors.orangeColor,
                 shape: BoxShape.circle,
@@ -1034,7 +1081,13 @@ class _MyInvestViewState extends State<MyInvestView> {
       maxLines: 1,
       style: GoogleFonts.poppins(
         color: isBlueBackground ? Colors.white : AppColors.lightBlack,
-        fontSize: 9,
+        fontSize: _isMobile
+            ? 9
+            : _isTab
+                ? 12
+                : _isPlasmaScreen
+                    ? 30
+                    : 22,
         fontWeight: FontWeight.w500,
       ),
     );
