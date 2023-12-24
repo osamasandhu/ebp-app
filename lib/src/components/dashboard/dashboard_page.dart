@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:epb_app/src/base/app_assets.dart';
 import 'package:epb_app/src/base/app_theme.dart';
 import 'package:epb_app/src/utils/app_utils.dart';
@@ -64,12 +66,22 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
+  var _width = 0.0;
+  var _height = 0.0;
+
+  bool get _isPlasmaScreen => _width > 1800 && _height > 1000;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return AppLayoutBuilder((context, deviceType, width) {
+    return AppLayoutBuilder((context, deviceType, width, height) {
+      _width = width;
+      _height = height;
       _pages = [
-        MyInvestView(parentDeviceType: deviceType),
+        MyInvestView(
+          parentDeviceType: deviceType,
+          screenSize: Size(_width, _height),
+        ),
         const Center(child: Text('Add Money')),
         const Center(child: Text('Withdraw')),
         const Center(child: Text('Networks')),
@@ -85,11 +97,12 @@ class _DashboardPageState extends State<DashboardPage> {
         const Center(child: Text('Networks')),
         const Center(child: Text('Transactions')),
       ];
+
       return Scaffold(
         body: deviceType == DeviceType.web
             ? Row(children: [
                 SizedBox(
-                  width: 200,
+                  width: _isPlasmaScreen ? 440 : 220,
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -112,7 +125,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       Expanded(
                         child: SingleChildScrollView(
                           child: Container(
-                            height: size.height - 90,
+                            height: _isPlasmaScreen ? size.height - 89 : null,
                             decoration: const BoxDecoration(
                               color: AppColors.blueColor,
                             ),
@@ -252,4 +265,8 @@ class _DashboardPageState extends State<DashboardPage> {
       color: i == _selectedIndex ? Colors.white : AppColors.orangeColor,
     );
   }
+}
+
+extension Print on Object {
+  void printOnConsole() => log(toString());
 }

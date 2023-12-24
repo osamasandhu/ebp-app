@@ -13,8 +13,10 @@ class MyInvestView extends StatefulWidget {
   const MyInvestView({
     super.key,
     required this.parentDeviceType,
+    required this.screenSize,
   });
 
+  final Size screenSize;
   final DeviceType parentDeviceType;
 
   @override
@@ -23,9 +25,21 @@ class MyInvestView extends StatefulWidget {
 
 class _MyInvestViewState extends State<MyInvestView> {
   late DeviceType _deviceType;
+  late Size _screenSize;
+
+  bool get _isMobile => _deviceType.isMobile;
+
+  bool get _isTab => _deviceType.isTab;
+
+  bool get _isWeb => _deviceType.isWeb;
+
+  bool get _isPlasmaScreen {
+    return _screenSize.width > 1800 && _screenSize.height > 1000;
+  }
 
   void _init([bool rebuild = false]) {
     _deviceType = widget.parentDeviceType;
+    _screenSize = widget.screenSize;
     if (rebuild) setState(() {});
   }
 
@@ -81,27 +95,39 @@ class _MyInvestViewState extends State<MyInvestView> {
       Expanded(
         flex: 2,
         child: AppContainerWidget(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 12,
-            vertical: 10,
+          padding: EdgeInsets.symmetric(
+            horizontal: _isPlasmaScreen ? 50 : 12,
+            vertical: _isPlasmaScreen ? 25 : 10,
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(AppAssets.userCircleIcon),
-              6.width,
+              SvgPicture.asset(
+                AppAssets.profile,
+                height: _isPlasmaScreen ? 120 : null,
+              ),
+              if (_deviceType.isWeb) ...[
+                20.width
+              ] else ...[
+                6.width,
+              ],
               Expanded(
                 child: Column(children: [
                   Row(children: [
                     Expanded(
-                      flex: 3,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             'SAMEER 07',
                             style: GoogleFonts.poppins(
-                              fontSize: 8,
+                              fontSize: _deviceType.isMobile
+                                  ? 8
+                                  : _deviceType.isTab
+                                      ? 10
+                                      : _isPlasmaScreen
+                                          ? 40
+                                          : 22,
                               fontWeight: FontWeight.bold,
                               color: AppColors.lightBlack,
                             ),
@@ -116,42 +142,42 @@ class _MyInvestViewState extends State<MyInvestView> {
                           getSubTitleWidget('Membership: Daimond'),
                           4.height,
                           getSubTitleWidget(
-                            'Upgarde Expires: 31 Dec, 2025',
+                            'Upgrade Expires: 31 Dec, 2025',
                           ),
                         ],
                       ),
                     ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (!_deviceType.isWeb) ...[
                           Align(
                             alignment: Alignment.topRight,
                             child: Image.asset(
                               AppAssets.settingsIcon,
-                              height: 17,
+                              height: _deviceType.isMobile ? 17 : 20,
                               width: 17,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 8.0,
-                              bottom: 4,
-                            ),
-                            child: getTextSpanWidget(
-                              title: 'Joined on: ',
-                              value: ' 07.06.2021',
-                            ),
-                          ),
-                          getTextSpanWidget(
-                            title: 'By user ID: ',
-                            value: ' 42245',
-                          ),
                         ],
-                      ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 8.0,
+                            bottom: 4,
+                          ),
+                          child: getTextSpanWidget(
+                            title: 'Joined on: ',
+                            value: ' 07.06.2021',
+                          ),
+                        ),
+                        getTextSpanWidget(
+                          title: 'By user ID: ',
+                          value: ' 42245',
+                        ),
+                      ],
                     ),
                   ]),
-                  if (deviceType == DeviceType.mobile)
+                  if (deviceType == DeviceType.mobile) ...[
                     Container(
                       margin: const EdgeInsets.only(
                         top: 3,
@@ -227,6 +253,7 @@ class _MyInvestViewState extends State<MyInvestView> {
                         ],
                       ),
                     ),
+                  ],
                 ]),
               ),
             ],
@@ -237,7 +264,12 @@ class _MyInvestViewState extends State<MyInvestView> {
         11.width,
         Expanded(
           child: AppContainerWidget(
-            padding: const EdgeInsets.fromLTRB(22, 8, 14, 8),
+            padding: EdgeInsets.fromLTRB(
+              _isPlasmaScreen ? 50 : 22,
+              _isPlasmaScreen ? 28 : 8,
+              _isPlasmaScreen ? 50 : 14,
+              _isPlasmaScreen ? 25 : 8,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -245,29 +277,47 @@ class _MyInvestViewState extends State<MyInvestView> {
                   Text(
                     'Referral link',
                     style: GoogleFonts.poppins(
-                      fontSize: 8,
+                      fontSize: _deviceType.isTab
+                          ? 8
+                          : _isPlasmaScreen
+                              ? 30
+                              : 18,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                   27.width,
-                  const Expanded(
+                  Expanded(
                     child: Icon(
                       Icons.help,
                       color: AppColors.orangeColor,
-                      size: 14,
+                      size: _deviceType.isTab
+                          ? 14
+                          : _isPlasmaScreen
+                              ? 30
+                              : 20,
                     ),
                   ),
-                  Image.asset(AppAssets.arrowUpIcon, height: 6, width: 6),
+                  if (_deviceType.isTab) ...[
+                    Image.asset(AppAssets.arrowUpIcon, height: 6, width: 6),
+                  ],
                 ]),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  padding: _isTab
+                      ? const EdgeInsets.symmetric(vertical: 8)
+                      : _isPlasmaScreen
+                          ? const EdgeInsets.symmetric(vertical: 32)
+                          : const EdgeInsets.symmetric(vertical: 14),
                   child: Text(
                     'https://ebp.net/b/sdr3545tfs',
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: GoogleFonts.poppins(
-                      color: const Color(0xFF0B3167),
-                      fontSize: 10,
+                      color: AppColors.blueColor,
+                      fontSize: _deviceType.isTab
+                          ? 10
+                          : _isPlasmaScreen
+                              ? 40
+                              : 22,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -289,12 +339,16 @@ class _MyInvestViewState extends State<MyInvestView> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(3),
+          borderRadius: BorderRadius.circular(_isTab ? 3 : 6),
         ),
         minimumSize: Size.zero,
         backgroundColor: AppColors.orangeColor,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 3,
+        padding: EdgeInsets.symmetric(
+          horizontal: _isTab
+              ? 3
+              : _isPlasmaScreen
+                  ? 12
+                  : 8,
           vertical: 7,
         ),
       ),
@@ -302,7 +356,11 @@ class _MyInvestViewState extends State<MyInvestView> {
       child: Text(
         title,
         style: GoogleFonts.poppins(
-          fontSize: 7,
+          fontSize: _deviceType.isTab
+              ? 7
+              : _isPlasmaScreen
+                  ? 22
+                  : 16,
           color: Colors.white,
           fontWeight: FontWeight.w500,
         ),
@@ -446,22 +504,25 @@ class _MyInvestViewState extends State<MyInvestView> {
                   child: Text(
                     'Dashboard',
                     style: GoogleFonts.poppins(
-                      fontSize: 33,
+                      fontSize: _isPlasmaScreen ? 60 : 33,
                       fontWeight: FontWeight.bold,
                       color: AppColors.lightBlack,
                     ),
                   ),
                 ),
-                Image.asset(
-                  AppAssets.userCircleIcon,
-                  color: AppColors.blueColor,
+                Transform.scale(
+                  scale: _isPlasmaScreen ? 2 : 1,
+                  child: Image.asset(
+                    AppAssets.userCircleIcon,
+                    color: AppColors.blueColor,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 49.0, right: 20),
                   child: Text(
                     'EBP User',
                     style: GoogleFonts.poppins(
-                      fontSize: 24,
+                      fontSize: _isPlasmaScreen ? 44 : 24,
                       fontWeight: FontWeight.bold,
                       color: AppColors.lightBlack,
                     ),
@@ -980,11 +1041,18 @@ class _MyInvestViewState extends State<MyInvestView> {
   }
 
   Widget getTextSpanWidget({required String title, required String value}) {
+    final fontSize = _deviceType.isMobile
+        ? 6.0
+        : _deviceType.isTab
+            ? 8.0
+            : _isPlasmaScreen
+                ? 30.0
+                : 22.0;
     return RichText(
       text: TextSpan(
         text: title,
         style: GoogleFonts.poppins(
-          fontSize: 6,
+          fontSize: fontSize,
           fontWeight: FontWeight.bold,
           color: AppColors.lightBlack,
         ),
@@ -992,7 +1060,7 @@ class _MyInvestViewState extends State<MyInvestView> {
           TextSpan(
             text: value,
             style: GoogleFonts.poppins(
-              fontSize: 6,
+              fontSize: fontSize,
               fontWeight: FontWeight.w500,
               color: AppColors.lightBlack,
             ),
@@ -1005,9 +1073,17 @@ class _MyInvestViewState extends State<MyInvestView> {
   Widget getSubTitleWidget(String title) {
     return Text(
       title,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
       style: GoogleFonts.poppins(
         color: AppColors.lightBlack,
-        fontSize: 6,
+        fontSize: _deviceType.isMobile
+            ? 6
+            : _deviceType.isTab
+                ? 8
+                : _isPlasmaScreen
+                    ? 30
+                    : 14,
         fontWeight: FontWeight.w500,
       ),
     );

@@ -6,6 +6,7 @@ typedef AppBuilder = Widget Function(
   BuildContext context,
   DeviceType deviceType,
   double width,
+  double height,
 );
 
 extension DeviceTypeExtension on DeviceType {
@@ -16,6 +17,7 @@ extension DeviceTypeExtension on DeviceType {
   bool get isWeb => this == DeviceType.web;
 
   bool get isWebTab => isTab || isWeb;
+
   bool get isMobileTab => isTab || isMobile;
 }
 
@@ -45,7 +47,12 @@ class _AppLayoutBuilderState extends State<AppLayoutBuilder> {
         } else if (constraints.maxWidth > 900) {
           type = DeviceType.web;
         }
-        return widget.builder(context, type, constraints.maxWidth);
+        return widget.builder(
+          context,
+          type,
+          constraints.maxWidth,
+          constraints.maxHeight,
+        );
       },
     );
   }
@@ -77,7 +84,12 @@ class _AppLayoutBuilderWebState extends State<AppLayoutBuilderWeb> {
         } else if (constraints.maxWidth > 900) {
           type = DeviceType.web;
         }
-        return widget.builder(context, type, constraints.maxWidth);
+        return widget.builder(
+          context,
+          type,
+          constraints.maxWidth,
+          constraints.maxHeight,
+        );
       },
     );
   }
