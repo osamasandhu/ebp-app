@@ -1105,14 +1105,18 @@ class _MyInvestViewState extends State<MyInvestView> {
           children: [
             Container(
               padding: const EdgeInsets.all(10),
-              width: 44,
-              height: 44,
+              width: _isPlasmaScreen ? 64 : 44,
+              height: _isPlasmaScreen ? 64 : 44,
               decoration: BoxDecoration(
                 color: AppColors.orangeColor,
                 borderRadius: BorderRadius.circular(14),
               ),
               margin: const EdgeInsets.only(right: 10),
-              child: SvgPicture.asset(img, color: Colors.white),
+              child: SvgPicture.asset(
+                img,
+                color: Colors.white,
+                height: _isPlasmaScreen ? 40 : null,
+              ),
             ),
             Expanded(
               child: Text(
@@ -1120,7 +1124,7 @@ class _MyInvestViewState extends State<MyInvestView> {
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w500,
                   color: Colors.white,
-                  fontSize: 12,
+                  fontSize: _isPlasmaScreen ? 24 : 12,
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
