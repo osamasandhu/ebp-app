@@ -280,8 +280,8 @@ class _MyInvestViewState extends State<MyInvestView> {
                       fontSize: _deviceType.isTab
                           ? 8
                           : _isPlasmaScreen
-                              ? 30
-                              : 18,
+                              ? 16
+                              : 14,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -574,8 +574,8 @@ class _MyInvestViewState extends State<MyInvestView> {
                   onTap: () {},
                   buttonTitle: 'Add Money',
                   icon: AppAssets.dollarCoinIcon,
-                  iconHeight: _isPlasmaScreen ? 60 : 51,
-                  iconWidth: _isPlasmaScreen ? 60 : 51,
+                  iconHeight: _isPlasmaScreen ? 45 : 40,
+                  iconWidth: _isPlasmaScreen ? 45 : 40,
                 ),
                 10.width,
                 getContainerWidget(
@@ -584,8 +584,8 @@ class _MyInvestViewState extends State<MyInvestView> {
                   onTap: () {},
                   buttonTitle: 'My Invest',
                   icon: AppAssets.dollarBagIcon,
-                  iconWidth: _isPlasmaScreen ? 33 : 42,
-                  iconHeight: _isPlasmaScreen ? 33 : 42,
+                  iconWidth: _isPlasmaScreen ? 24 : 24,
+                  iconHeight: _isPlasmaScreen ? 24 : 24,
                 ),
                 10.width,
                 getContainerWidget(
@@ -594,8 +594,8 @@ class _MyInvestViewState extends State<MyInvestView> {
                   onTap: () {},
                   buttonTitle: 'Transfer To Cash',
                   icon: AppAssets.graphIcon,
-                  iconHeight: _isPlasmaScreen ? 45 : 38,
-                  iconWidth: _isPlasmaScreen ? 60 : 52,
+                  iconHeight: _isPlasmaScreen ? 25 : 20,
+                  iconWidth: _isPlasmaScreen ? 35 : 30,
                 ),
                 10.width,
                 getContainerWidget(
@@ -604,8 +604,8 @@ class _MyInvestViewState extends State<MyInvestView> {
                   onTap: () {},
                   buttonTitle: 'Transfer To Cash',
                   icon: AppAssets.networkIcon,
-                  iconWidth: _isPlasmaScreen ? 48 : 39,
-                  iconHeight: _isPlasmaScreen ? 54 : 45,
+                  iconWidth: _isPlasmaScreen ? 25 : 25,
+                  iconHeight: _isPlasmaScreen ? 30 : 31,
                 ),
               ]),
               28.height,
@@ -1053,8 +1053,8 @@ class _MyInvestViewState extends State<MyInvestView> {
                             : _isTab
                                 ? 12
                                 : _isPlasmaScreen
-                                    ? 20
-                                    : 16,
+                                    ? 16
+                                    : 14,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                       ),
@@ -1071,15 +1071,15 @@ class _MyInvestViewState extends State<MyInvestView> {
                   : _isTab
                       ? 31
                       : _isPlasmaScreen
-                          ? 80
-                          : 70,
+                          ? 50
+                          : 45,
               width: _isMobile
                   ? 28
                   : _isTab
                       ? 31
                       : _isPlasmaScreen
-                          ? 80
-                          : 70,
+                          ? 50
+                          : 45,
               decoration: const BoxDecoration(
                 color: AppColors.orangeColor,
                 shape: BoxShape.circle,
@@ -1106,8 +1106,8 @@ class _MyInvestViewState extends State<MyInvestView> {
             : _isTab
                 ? 12
                 : _isPlasmaScreen
-                    ? 30
-                    : 22,
+                    ? 20
+                    : 16,
         fontWeight: FontWeight.w500,
       ),
     );
@@ -1119,8 +1119,8 @@ class _MyInvestViewState extends State<MyInvestView> {
         : _deviceType.isTab
             ? 8.0
             : _isPlasmaScreen
-                ? 30.0
-                : 22.0;
+                ? 20.0
+                : 16.0;
     return RichText(
       text: TextSpan(
         text: title,
