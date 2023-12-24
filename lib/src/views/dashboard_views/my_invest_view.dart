@@ -659,7 +659,7 @@ class _MyInvestViewState extends State<MyInvestView> {
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 7),
         child: Column(children: [
           SizedBox(
-            height: 220,
+            height: _isPlasmaScreen ? 322 : 220,
             child: SfCartesianChart(
               primaryXAxis: const CategoryAxis(),
               primaryYAxis: const NumericAxis(
@@ -724,7 +724,9 @@ class _MyInvestViewState extends State<MyInvestView> {
             ? 4
             : _deviceType.isTab
                 ? 7
-                : 10,
+                : _isPlasmaScreen
+                    ? 15
+                    : 10,
         fontWeight: FontWeight.w500,
         color: AppColors.lightBlack,
       ),
@@ -733,11 +735,14 @@ class _MyInvestViewState extends State<MyInvestView> {
     );
     final progressWidget = GradientCircularProgressIndicator(
       deviceType: _deviceType,
+      isPlasmaScreen: _isPlasmaScreen,
       radius: _deviceType == DeviceType.mobile
           ? 37
           : _deviceType == DeviceType.tab
               ? 66
-              : 80,
+              : _isPlasmaScreen
+                  ? 120
+                  : 80,
       strokeWidth: 10,
       gradient: const LinearGradient(
         colors: [
@@ -790,13 +795,22 @@ class _MyInvestViewState extends State<MyInvestView> {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                if (_isPlasmaScreen) ...[
+                  40.height,
+                ],
                 getStatisticsTile(title: 'Total Withdraw'),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 35),
+                  padding: EdgeInsets.symmetric(
+                    vertical: _isPlasmaScreen ? 45 : 40,
+                  ),
                   child: getStatisticsTile(title: 'Total Commision'),
                 ),
                 getStatisticsTile(title: 'Monthly Incentive'),
-                42.height,
+                if (_isPlasmaScreen) ...[
+                  45.height,
+                ] else ...[
+                  35.height,
+                ],
                 getStatisticsTile(
                   title: 'Total Network Sale',
                   isOrangeArrow: false,
@@ -897,7 +911,9 @@ class _MyInvestViewState extends State<MyInvestView> {
                 ? 11
                 : _deviceType.isTab
                     ? 16
-                    : 16,
+                    : _isPlasmaScreen
+                        ? 22
+                        : 16,
           ),
           2.width,
           RichText(
@@ -911,7 +927,9 @@ class _MyInvestViewState extends State<MyInvestView> {
                     ? 8
                     : _deviceType.isTab
                         ? 12
-                        : 10,
+                        : _isPlasmaScreen
+                            ? 16
+                            : 10,
                 fontWeight: FontWeight.bold,
               ),
               children: [
@@ -922,7 +940,9 @@ class _MyInvestViewState extends State<MyInvestView> {
                         ? 8
                         : _deviceType.isTab
                             ? 12
-                            : 10,
+                            : _isPlasmaScreen
+                                ? 16
+                                : 10,
                     color: AppColors.blueColor,
                   ),
                 ),

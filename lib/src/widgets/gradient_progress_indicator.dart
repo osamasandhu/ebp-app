@@ -12,6 +12,7 @@ class GradientCircularProgressIndicator extends StatefulWidget {
     required this.value,
     required this.trackColor,
     required this.deviceType,
+    this.isPlasmaScreen = false,
   });
 
   final double strokeWidth;
@@ -20,6 +21,7 @@ class GradientCircularProgressIndicator extends StatefulWidget {
   final double value;
   final Color trackColor;
   final DeviceType deviceType;
+  final bool isPlasmaScreen;
 
   @override
   State<GradientCircularProgressIndicator> createState() =>
@@ -29,9 +31,11 @@ class GradientCircularProgressIndicator extends StatefulWidget {
 class _GradientCircularProgressIndicatorState
     extends State<GradientCircularProgressIndicator> {
   late DeviceType _deviceType;
+  late bool _isPlasmaScreen;
 
   void _inti([bool rebuild = false]) {
     _deviceType = widget.deviceType;
+    _isPlasmaScreen = widget.isPlasmaScreen;
     if (rebuild) setState(() {});
   }
 
@@ -77,12 +81,12 @@ class _GradientCircularProgressIndicatorState
       titleStyle = GoogleFonts.poppins(
         fontWeight: FontWeight.bold,
         color: AppColors.blueColor,
-        fontSize: 20,
+        fontSize: _isPlasmaScreen ? 25 : 20,
       );
 
       progressStyle = GoogleFonts.poppins(
         color: AppColors.greenColor,
-        fontSize: 35,
+        fontSize: _isPlasmaScreen ? 42 : 35,
         fontWeight: FontWeight.bold,
       );
     }
@@ -113,7 +117,9 @@ class _GradientCircularProgressIndicatorState
               ? 16
               : _deviceType.isTab
                   ? 20
-                  : 25,
+                  : _isPlasmaScreen
+                      ? 35
+                      : 25,
           child: Text(
             '${(widget.value * 100).toInt()}%',
             style: progressStyle,
@@ -124,7 +130,9 @@ class _GradientCircularProgressIndicatorState
               ? 24
               : _deviceType.isTab
                   ? 41
-                  : 50,
+                  : _isPlasmaScreen
+                      ? 70
+                      : 50,
           child: Text(
             'Next Rank',
             style: titleStyle,
